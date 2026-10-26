@@ -1,8 +1,10 @@
 #include <iostream>
 #include "mapa.h"
+#include "autko.h"
 #include "render.h"
 #ifdef _WIN32
 #include <windows.h>
+
 #endif
 using namespace std;
 int main() {
@@ -31,8 +33,11 @@ int main() {
        testEdge.cars = 9;
     cout << "4. Remont + korek (oczekiwane: 9): " 
          << travelCost(testEdge) << "\n";
+    for (int i=0;i<20;++i) {
+        Autko a=city.rand_autko();
+        render(city);
+    }
 
-    render(city);
     return 0;
 
 }

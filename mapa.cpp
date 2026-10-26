@@ -1,15 +1,34 @@
 #include <vector>
 #include <cstdint>
-#include <math.h>
+
 
 #include "mapa.h"
-
+#include "autko.h"
+#include <random>
 CityMap::CityMap(int w, int h) : w(w), h(h), cells(w * h) {}
 
 Cell& CityMap::at(int x, int y) {
     return cells[y * w + x];
 }
+int rand_uniform(int min, int max) {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(min, max);
+    return dist(gen);
+}
+Autko CityMap::rand_autko() {
+    Autko a;
+    int x= rand_uniform(0, w - 1);
+    int y= rand_uniform(0, h - 1);
+    Cell& komorkson= at(x, y);
+    Edge& kra=komorkson.edge[rand_uniform(0, 3)];
+    int x_cel= rand_uniform(0, w - 1);
+    int y_cel= rand_uniform(0, h - 1);
+    Cell& cel=at(x_cel,y_cel);
+    Dir d=static_cast<Dir>(rand_uniform(0, 3));
 
+    return a;
+}
 bool CityMap::inside(int x, int y) const {
     return x >= 0 && y >= 0 && x < w && y < h;
 }

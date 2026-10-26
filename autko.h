@@ -1,16 +1,14 @@
-#include "mapa.h"
+#ifndef INTERGALAKTYCZNYUBER_AUTKO_H
+#define INTERGALAKTYCZNYUBER_AUTKO_H
+#include "autko.h"
 
 enum state { IDLE,DRIVINGTOCLIENT,DRIVINGWITHCLIENT };
-class autko {
-private:
+struct Autko {
     Edge loc;
     Dir dir;
     Cell cel;
-    state state;
-public:
-
+    state state=IDLE;
 };
-#ifndef INTERGALAKTYCZNYUBER_AUTKO_H
-#define INTERGALAKTYCZNYUBER_AUTKO_H
+
 
 #endif //INTERGALAKTYCZNYUBER_AUTKO_H

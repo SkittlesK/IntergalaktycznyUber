@@ -1,7 +1,9 @@
 #pragma once
+
 #include <vector>
 #ifndef INTERGALAKTYCZNYUBER_MAPA_H
 #define INTERGALAKTYCZNYUBER_MAPA_H
+struct Autko;
 enum Dir { UP, DOWN, LEFT, RIGHT };
 
 inline constexpr int dx[4] = {0, 0, -1, 1};
@@ -28,6 +30,8 @@ struct CityMap {
 
     Cell& at(int x, int y);
     bool inside(int x, int y) const;
+
+    Autko rand_autko();
 };
 
 CityMap createUniformGrid(int width = 5, int height = 5, float defaultLength = 1.0f);
