@@ -42,7 +42,7 @@ CityMap createUniformGrid(int width, int height, float defaultLength){
 }
 
 float travelCost(const Edge& e){
-    if (e.blocked) return INFINITY;
+    if (e.blocked || e.capacity <= 0) return INFINITY;
     float congestion = 1.0f;
     if (e.cars > e.capacity)
         congestion += 0.5f * (e.cars - e.capacity);

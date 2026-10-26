@@ -5,11 +5,7 @@
 #include <functional>
 
 
-float Dijkstra::edgeCost(const Edge& e) {
-    if (e.blocked || e.capacity <= 0) return std::numeric_limits<float>::infinity();
-    float load = static_cast<float>(e.cars) / e.capacity;
-    return e.baseLength * (1.0f + 0.15f * std::pow(load, 4.0f)) + e.roadworks;
-}
+
 
 Dijkstra::DijkstraResult Dijkstra::dijkstra(CityMap& map, int sx, int sy, bool reversed, const std::vector<char>& isTarget) {
     const float INF = std::numeric_limits<float>::infinity();
@@ -52,7 +48,9 @@ Dijkstra::DijkstraResult Dijkstra::dijkstra(CityMap& map, int sx, int sy, bool r
             if (!vc.road) continue;
 
             const Edge& e = reversed ? vc.edge[k ^ 1] : map.at(ux, uy).edge[k];
-            float nd = d + edgeCost(e);
+            float w = travelCost(e);
+            if (std::isinf(w)) continue;
+            float nd = d + w;
             int v = vy * map.w + vx;
 
             if (nd < res.dist[v]) {
