@@ -13,7 +13,7 @@ int main() {
         dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
         SetConsoleMode(hOut, dwMode);
     #endif
-    CityMap city = createUniformGrid (5, 5);
+    CityMap city = createUniformGrid (9, 9);
 
     
     const Cell& corner = city.at(0, 0);
@@ -23,7 +23,7 @@ int main() {
               << (corner.edge[RIGHT].blocked ? "TAK" : "NIE") << "\n";
 
               
-    Edge& testEdge = city.at(1, 1).edge[DOWN];
+    Edge& testEdge = city.at(0, 0).edge[DOWN];
     testEdge.roadworks = 2.0f; 
     cout << "3. Sam remont (oczekiwane: 3): " 
          << travelCost(testEdge) << "\n";

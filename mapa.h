@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-
+#ifndef INTERGALAKTYCZNYUBER_MAPA_H
+#define INTERGALAKTYCZNYUBER_MAPA_H
 enum Dir { UP, DOWN, LEFT, RIGHT };
 
 inline constexpr int dx[4] = {0, 0, -1, 1};
@@ -32,9 +33,5 @@ struct CityMap {
 CityMap createUniformGrid(int width = 5, int height = 5, float defaultLength = 1.0f);
 
 float travelCost(const Edge& e);
-
-
-#ifndef INTERGALAKTYCZNYUBER_MAPA_H
-#define INTERGALAKTYCZNYUBER_MAPA_H
 
 #endif //INTERGALAKTYCZNYUBER_MAPA_H
