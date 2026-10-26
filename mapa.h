@@ -31,6 +31,8 @@ struct CityMap {
 
 CityMap createUniformGrid(int width = 5, int height = 5, float defaultLength = 1.0f);
 
+float travelCost(const Edge& e);
+
 
 #ifndef INTERGALAKTYCZNYUBER_MAPA_H
 #define INTERGALAKTYCZNYUBER_MAPA_H

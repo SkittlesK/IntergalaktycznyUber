@@ -1,5 +1,6 @@
 #include <vector>
 #include <cstdint>
+#include <math.h>
 
 #include "mapa.h"
 
@@ -38,4 +39,12 @@ CityMap createUniformGrid(int width, int height, float defaultLength){
         }
     }
     return map;
+}
+
+float travelCost(const Edge& e){
+    if (e.blocked) return INFINITY;
+    float congestion = 1.0f;
+    if (e.cars > e.capacity)
+        congestion += 0.5f * (e.cars - e.capacity);
+    return (e.baseLength + e.roadworks) * congestion;
 }
