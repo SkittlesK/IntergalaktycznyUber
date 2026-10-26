@@ -1,9 +1,12 @@
 #include <iostream>
 #include "mapa.h"
+#include <random>
 #include "autko.h"
 #include "render.h"
 #ifdef _WIN32
 #include <windows.h>
+#include "client.h"
+#include "Pathfinding.h"
 
 #endif
 using namespace std;
@@ -37,6 +40,15 @@ int main() {
         Autko a=city.rand_autko();
         render(city);
     }
+
+    std::mt19937 rng(std::random_device{}());   // do testów: stałe ziarno, np. rng(42)
+    auto clients = generateClients(city, 3, rng);
+
+    RenderData data;
+    data.client = clients[0].spawn;
+    auto res = Dijkstra::dijkstra(city, clients[0].spawn % city.w, clients[0].spawn / city.w);
+    data.path = Dijkstra::buildPath(res, clients[0].dest);
+    render(city, data);
 
     return 0;
 
