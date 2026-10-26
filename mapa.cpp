@@ -26,7 +26,10 @@ Autko CityMap::rand_autko() {
     int y_cel= rand_uniform(0, h - 1);
     Cell& cel=at(x_cel,y_cel);
     Dir d=static_cast<Dir>(rand_uniform(0, 3));
-
+    a.cel=cel;
+    a.loc=kra;
+    a.dir=d;
+    kra.cars+=1;
     return a;
 }
 bool CityMap::inside(int x, int y) const {

@@ -36,10 +36,12 @@ int main() {
        testEdge.cars = 9;
     cout << "4. Remont + korek (oczekiwane: 9): " 
          << travelCost(testEdge) << "\n";
-    for (int i=0;i<20;++i) {
+    vector<Autko> auta;
+    for (int i=0;i<1000;++i) {
         Autko a=city.rand_autko();
-        render(city);
+        auta.push_back(a);
     }
+    render(city);
 
     std::mt19937 rng(std::random_device{}());   // do testów: stałe ziarno, np. rng(42)
     auto clients = generateClients(city, 3, rng);
