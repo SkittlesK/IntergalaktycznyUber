@@ -1,4 +1,3 @@
-#include "mapa.h"
 #include <vector>
 #include <cstdint>
 
@@ -12,4 +11,31 @@ Cell& CityMap::at(int x, int y) {
 
 bool CityMap::inside(int x, int y) const {
     return x >= 0 && y >= 0 && x < w && y < h;
+}
+
+CityMap createUniformGrid(int width, int height, float defaultLength){
+    CityMap map(width, height);
+
+    for (int y = 0; y < height; ++y){
+        for (int x = 0; x < width; ++x){
+            Cell& current = map.at(x, y);
+            current.road = true;
+
+            for(int d  = 0; d < 4; ++d){
+                int nx = x + dx[d];
+                int ny = y + dy[d];
+
+
+                Edge& e = current.edge[d];
+                e.baseLength = defaultLength;
+                e.roadworks = 0.0f;
+                e.cars = 0;
+                e.capacity = 5;
+
+                e.blocked = !map.inside(nx, ny);
+
+            }
+        }
+    }
+    return map;
 }

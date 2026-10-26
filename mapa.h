@@ -28,6 +28,10 @@ struct CityMap {
     Cell& at(int x, int y);
     bool inside(int x, int y) const;
 };
+
+CityMap createUniformGrid(int width = 5, int height = 5, float defaultLength = 1.0f);
+
+
 #ifndef INTERGALAKTYCZNYUBER_MAPA_H
 #define INTERGALAKTYCZNYUBER_MAPA_H
 

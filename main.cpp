@@ -1,10 +1,18 @@
 #include <iostream>
-#include <mapa.h>
-#include <mapa.cpp>
-#include <punkt.h>
-#include <punkt.cpp>
+#include "mapa.h"
+
+
 using namespace std;
 int main() {
-    CityMap a(5,5);
+    CityMap city = createUniformGrid (5, 5);
+
+    
+    const Cell& corner = city.at(0, 0);
+    std::cout << "Komorka (0,0) - ruch w GORE zablokowany? " 
+              << (corner.edge[UP].blocked ? "TAK" : "NIE") << "\n";
+    std::cout << "Komorka (0,0) - ruch w PRAWO zablokowany? " 
+              << (corner.edge[RIGHT].blocked ? "TAK" : "NIE") << "\n";
+
+    return 0;
 
 }
