@@ -1,3 +1,10 @@
+# Ignoruj foldery budowania CMake (np. cmake-build-debug)
+cmake-build-*/
+build/
+out/
+
+# Ignoruj lokalne ustawienia środowiska CLion
+.idea/
 # Prerequisites
 *.d
 

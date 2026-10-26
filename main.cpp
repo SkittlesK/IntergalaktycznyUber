@@ -1,6 +1,6 @@
 #include <iostream>
 #include "mapa.h"
-
+#include "render.h"
 
 using namespace std;
 int main() {
