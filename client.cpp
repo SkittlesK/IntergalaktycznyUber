@@ -13,7 +13,7 @@ std::vector<Client> generateClients(CityMap& map, int count, std::mt19937& rng) 
     if (roads.size() < 2) return clients;
 
     std::uniform_int_distribution<size_t> pick(0, roads.size() - 1);
-    const float INF = std::numeric_limits<float>::infinity();
+    const float INF = std::numeric_limits<double>::infinity();
 
     int attempts = 0;
     const int maxAttempts = count * 20;
@@ -27,7 +27,7 @@ std::vector<Client> generateClients(CityMap& map, int count, std::mt19937& rng) 
         if (r.dist[d] == INF) continue;
 
         Client c;
-        c.id = (int)clients.size();
+        c.id = static_cast<int>(clients.size());
         c.spawn = s;
         c.dest = d;
         clients.push_back(c);

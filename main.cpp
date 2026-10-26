@@ -18,7 +18,7 @@ int main() {
         dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
         SetConsoleMode(hOut, dwMode);
     #endif
-    CityMap city = createUniformGrid (9, 9);
+    CityMap city = createUniformGrid (20, 20);
 
     
     const Cell& corner = city.at(0, 0);
@@ -37,7 +37,7 @@ int main() {
     cout << "4. Remont + korek (oczekiwane: 9): " 
          << travelCost(testEdge) << "\n";
     vector<Autko> auta;
-    for (int i=0;i<1000;++i) {
+    for (int i=0;i<7000;++i) {
         Autko a=city.rand_autko();
         auta.push_back(a);
     }
@@ -45,12 +45,14 @@ int main() {
 
     std::mt19937 rng(std::random_device{}());   // do testów: stałe ziarno, np. rng(42)
     auto clients = generateClients(city, 3, rng);
+    for (int i=0;i<clients.size();++i) {
+        RenderData data;
+        data.client = clients[i].spawn;
+        auto res = Dijkstra::dijkstra(city, clients[i].spawn % city.w, clients[i].spawn / city.w);
+        data.path = Dijkstra::buildPath(res, clients[i].dest);
+        render(city, data);
+    }
 
-    RenderData data;
-    data.client = clients[0].spawn;
-    auto res = Dijkstra::dijkstra(city, clients[0].spawn % city.w, clients[0].spawn / city.w);
-    data.path = Dijkstra::buildPath(res, clients[0].dest);
-    render(city, data);
 
     return 0;
 
