@@ -5,6 +5,6 @@
 #include <punkt.cpp>
 using namespace std;
 int main() {
-    Mapa mapa;
+    CityMap a(5,5);
 
 }
