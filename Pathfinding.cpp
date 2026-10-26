@@ -4,14 +4,14 @@
 #include <cmath>
 #include <functional>
 
-float edgeCost(const Edge& e) {
+
+float Dijkstra::edgeCost(const Edge& e) {
     if (e.blocked || e.capacity <= 0) return std::numeric_limits<float>::infinity();
     float load = static_cast<float>(e.cars) / e.capacity;
     return e.baseLength * (1.0f + 0.15f * std::pow(load, 4.0f)) + e.roadworks;
 }
 
-DijkstraResult dijkstra(CityMap& map, int sx, int sy, bool reversed, const std::vector<char>& isTarget) {
-    // co co znaczy:              mapa normalnie, skądx, dokądx, czy na odwrot, to ma sens przy szukaniu 1 kierowcy
+Dijkstra::DijkstraResult Dijkstra::dijkstra(CityMap& map, int sx, int sy, bool reversed, const std::vector<char>& isTarget) {
     const float INF = std::numeric_limits<float>::infinity();
     int n = map.w * map.h;
 
@@ -66,7 +66,7 @@ DijkstraResult dijkstra(CityMap& map, int sx, int sy, bool reversed, const std::
     return res;
 }
 
-std::vector<int> buildPath(const DijkstraResult& r, int from) {
+std::vector<int> Dijkstra::buildPath(const DijkstraResult& r, int from) {
     std::vector<int> path;
     if (r.dist[from] == std::numeric_limits<float>::infinity()) return path;
     for (int v = from; v != -1; v = r.parent[v]) path.push_back(v);

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef INTERGALAKTYCZNYUBER_RENDER_H
+#define INTERGALAKTYCZNYUBER_RENDER_H
+
 #include <vector>
 #include "mapa.h"
 
@@ -9,7 +11,5 @@ struct RenderData {
 };
 
 void render(CityMap& map, const RenderData& data = {});
-#ifndef INTERGALAKTYCZNYUBER_RENDER_H
-#define INTERGALAKTYCZNYUBER_RENDER_H
 
 #endif //INTERGALAKTYCZNYUBER_RENDER_H
